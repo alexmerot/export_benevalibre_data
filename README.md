@@ -16,7 +16,7 @@
 
 ### Setup to build from source and for development
 
-1) Clone or download the private Github repo `https://github.com/alexmerot/extraction_benevalibre`.
+1) Clone or download the private Github repo <https://github.com/alexmerot/extraction_benevalibre>.
 2) Install the packages with `pipenv`:
     ```
     $Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
