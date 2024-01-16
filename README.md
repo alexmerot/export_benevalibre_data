@@ -1,18 +1,24 @@
-## Create an EXE file to download data from the *Bénévalibre* web app 
+## Export data from the *Bénévalibre* web app to an Excel file
 
 ### Requirements
 
-- Python version: ≥3.12
-- pipenv version: ≥2023-11-15
+- Python version: ≥ 3.12
+- pipenv version: ≥ 2023-11-15
 - Windows 10 or more with Powershell
 - An account on the [Bénévalibre](https://app.benevalibre.org) web app.
 - A `.env` file on the root of the project with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
 
 > [!note]
-> To get the id of the association:
-> 1) In the [board](https://app.benevalibre.org/board/), click on the association.
-> 2) Copy the id in the URL of the page after `/association/`.
-> Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
+> - To get the id of the association:
+>  1) In the [board](https://app.benevalibre.org/board/), click on the association.
+>  2) Copy the id in the URL of the page after `/association/`.
+>  Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
+> - Example for the `.env` file:
+>   ```
+>   MAIL="prenom.nom@association.org"
+>   PASSWORD="strong password"
+>   ID_ASSOCIATION="1234"
+>   ```
 
 ### Setup to build from source and for development
 
@@ -28,7 +34,7 @@
     ```
 5) Run the Pyinstaller command:
     ```
-    pyinstaller scripts/export_data.py
+    pyinstaller scripts\export_data.py
     ```
 
 ### Usage
