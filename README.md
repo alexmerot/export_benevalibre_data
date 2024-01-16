@@ -17,18 +17,18 @@
 ### Setup
 
 1) Install the packages with `pipenv`:
-```
-$Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
-```
+    ```
+    $Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
+    ```
 2) Launch a subshell in virtual environment with `pipenv shell`.
 3) Installing firefox browser for Playwright:
-```
-$Env:PLAYWRIGHT_BROWSERS_PATH='0'; playwright install firefox
-```
+    ```
+    $Env:PLAYWRIGHT_BROWSERS_PATH='0'; playwright install firefox
+    ```
 4) Run the Pyinstaller command:
-```
-pyinstaller scripts/export_data.py
-```
+    ```
+    pyinstaller scripts/export_data.py
+    ```
 
 ### Usage
 
