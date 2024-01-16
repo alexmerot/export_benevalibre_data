@@ -4,7 +4,7 @@
 
 - Python version: ≥ 3.12
 - pipenv version: ≥ 2023-11-15
-- Windows 10 or more with Powershell
+- At least Windows 10 with Powershell
 - An account on the [Bénévalibre](https://app.benevalibre.org) web app.
 - A `.env` file in the root project directory with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
 
@@ -16,7 +16,7 @@
 >   Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
 > - Example for the `.env` file:
 >   ```
->   MAIL="prenom.nom@association.org"
+>   MAIL="elliot.alderson@association.org"
 >   PASSWORD="strong password"
 >   ID_ASSOCIATION="1234"
 >   ```
