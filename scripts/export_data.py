@@ -11,7 +11,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 async def download_data(folder_path, mail, password, id_association):
-    """Télécharge au format JSON la table des bénévolats sur Bénévalibre."""
+    """Télécharge au format JSON la table des bénévolats depuis Bénévalibre."""
 
     today = date.isoformat(date.today())
     if not os.path.exists(f"{folder_path}/{today}"):
@@ -47,7 +47,7 @@ async def download_data(folder_path, mail, password, id_association):
 
 
 async def export_data():
-    """Exporte en CSV les données des bénévolats de Bénévalibre."""
+    """Exporte et converti en Excel les données des bénévolats de Bénévalibre."""
 
     load_dotenv(find_dotenv(raise_error_if_not_found=True))
     MAIL = os.environ.get("MAIL")
