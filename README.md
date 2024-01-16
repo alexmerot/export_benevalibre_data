@@ -6,7 +6,7 @@
 - pipenv version: ≥ 2023-11-15
 - Windows 10 or more with Powershell
 - An account on the [Bénévalibre](https://app.benevalibre.org) web app.
-- A `.env` file on the root of the project with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
+- A `.env` file in the root project directory with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
 
 > [!note]
 > - To get the id of the association:
