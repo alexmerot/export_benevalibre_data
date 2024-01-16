@@ -14,7 +14,7 @@
 > 2) Copy the id in the URL of the page after `/association/`.
 > Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
 
-### Setup for build from source and development
+### Setup to build from source and for development
 
 1) Clone or download the private Github repo `https://github.com/alexmerot/extraction_benevalibre`.
 2) Install the packages with `pipenv`:
