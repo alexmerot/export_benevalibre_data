@@ -2,8 +2,9 @@ from playwright.async_api import async_playwright
 import asyncio
 from datetime import date
 import os
+import sys
 
-async def download_data(folder_path, mail, password):
+async def download_data(folder_path, mail, password, id_association):
     """Télécharge au format JSON la table des bénévolats sur Bénévalibre."""
 
     today = date.isoformat(date.today())
@@ -29,7 +30,7 @@ async def download_data(folder_path, mail, password):
 
         async with page.expect_download() as download_info:
             try:
-                await page.goto("https://app.benevalibre.org/associations/1236/benevalo/?_export=json")
+                await page.goto(f"https://app.benevalibre.org/associations/{id_association}/benevalo/?_export=json")
             except:
                 pass
         
@@ -37,13 +38,3 @@ async def download_data(folder_path, mail, password):
         await download.save_as(f"{folder_path}/{today}/benevalibre_{today}.json")
 
         await browser.close()
-
-async def main():
-    await download_data()
-    if os.path.exists(f"./output/{date.isoformat(date.today())}"):
-        print("Successful download")
-    else:
-        print("Error")
-
-if __name__ == '__main__':
-    asyncio.run(main())

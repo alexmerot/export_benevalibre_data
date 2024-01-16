@@ -5,12 +5,16 @@ import tkinter
 from tkinter import filedialog
 from download_data import download_data
 import os
+from dotenv import load_dotenv, find_dotenv
 
 async def export_data():
     """Exporte en CSV les données des bénévolats de Bénévalibre."""
 
-    print("Loading, please wait...")
-    
+    load_dotenv(find_dotenv(raise_error_if_not_found=True))
+    MAIL = os.environ.get("MAIL")
+    PASSWORD = os.environ.get("PASSWORD")
+    ID_ASSOCIATION = os.environ.get("ID_ASSOCIATION")
+
     tkinter.Tk().withdraw()
     folder_path = filedialog.askdirectory()
 
@@ -22,7 +26,7 @@ async def export_data():
     print(f'The Excel file will be downloaded in the folder "{folder_path}/{today}/".')
     print("Loading, please wait...")
 
-    await download_data(folder_path)
+    await download_data(folder_path, MAIL, PASSWORD, ID_ASSOCIATION)
     df = pd.read_json(file)
 
     df.to_excel(f"{folder_path}/{today}/benevalibre_{today}.xlsx", index=False)
@@ -30,4 +34,5 @@ async def export_data():
     os.remove(f"{folder_path}/{today}/benevalibre_{today}.json")
 
 if __name__ == '__main__':
+    print("Loading, please wait...")
     asyncio.run(export_data())
