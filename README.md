@@ -10,9 +10,9 @@
 
 > [!note]
 > - To get the id of the association:
->  1) In the [board](https://app.benevalibre.org/board/), click on the association.
->  2) Copy the id in the URL of the page after `/association/`.
->  Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
+>   1) In the [board](https://app.benevalibre.org/board/), click on the association.
+>   2) Copy the id in the URL of the page after `/association/`.
+>   Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
 > - Example for the `.env` file:
 >   ```
 >   MAIL="prenom.nom@association.org"
