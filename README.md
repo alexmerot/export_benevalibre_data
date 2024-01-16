@@ -14,18 +14,19 @@
 > 2) Copy the id in the URL of the page after `/association/`.
 > Ex: in `https://app.benevalibre.org/association/1234/`, the id is "1234".
 
-### Setup
+### Setup for build from source and development
 
-1) Install the packages with `pipenv`:
+1) Clone or download the private Github repo `https://github.com/alexmerot/extraction_benevalibre`.
+2) Install the packages with `pipenv`:
     ```
     $Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
     ```
-2) Launch a subshell in virtual environment with `pipenv shell`.
-3) Installing firefox browser for Playwright:
+3) Launch a subshell in virtual environment with `pipenv shell`.
+4) Installing firefox browser for Playwright:
     ```
     $Env:PLAYWRIGHT_BROWSERS_PATH='0'; playwright install firefox
     ```
-4) Run the Pyinstaller command:
+5) Run the Pyinstaller command:
     ```
     pyinstaller scripts/export_data.py
     ```
