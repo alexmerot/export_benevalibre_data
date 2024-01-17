@@ -35,7 +35,7 @@
     ```
 5) Run the Pyinstaller command:
     ```
-    pyinstaller scripts\export_data.py
+    pyinstaller export_data.py
     ```
 
 ### Usage
