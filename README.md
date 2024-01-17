@@ -8,7 +8,7 @@
 - An account on the [Bénévalibre](https://app.benevalibre.org) web app.
 - An `.env` file in the root project directory with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
 
-> [!note]
+> [!NOTE]
 > - To get the ID of the association:
 >   1) In [board](https://app.benevalibre.org/board/), click on the association you want.
 >   2) Copy the ID in the URL of the page after `/association/`.
@@ -26,7 +26,7 @@
 1) Clone or download the Github repo <https://github.com/alexmerot/extraction_benevalibre>.
 2) Install the packages with `pipenv`:
     ```
-    $Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
+    pipenv sync
     ```
 3) Launch a subshell in virtual environment with `pipenv shell`.
 4) Install firefox browser for Playwright:
@@ -38,7 +38,7 @@
     pyinstaller export_data.py
     ```
 
-> [!note]
+> [!NOTE]
 > Setting the environment variable `PLAYWRIGHT_BROWSERS_PATH` to 0 enables to
 > download browsers under the `site-packages/playwright` folder. It is necessary
 > for the executable file created by Pyinstaller to work.
@@ -48,3 +48,6 @@
 1) Double-click the `export_data.exe` file in `.\dist\export_data\`.
 2) Wait for file explorer to launch, then select the folder where to download the Excel file.
 3) Wait, the Excel file will be downloaded.
+
+> [!IMPORTANT]
+> Don't forget the [`.env`](#requirements) file.
