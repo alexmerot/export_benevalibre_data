@@ -29,7 +29,7 @@
     $Env:PLAYWRIGHT_BROWSERS_PATH='0'; pipenv install
     ```
 3) Launch a subshell in virtual environment with `pipenv shell`.
-4) Installing firefox browser for Playwright:
+4) Install firefox browser for Playwright:
     ```
     $Env:PLAYWRIGHT_BROWSERS_PATH='0'; playwright install firefox
     ```
