@@ -10,13 +10,35 @@ from datetime import date
 import os
 from dotenv import load_dotenv, find_dotenv
 
-async def download_data(folder_path, mail, password, id_association):
-    """Télécharge au format JSON la table des bénévolats depuis Bénévalibre."""
+async def export_data(folder_path: str, mail: str, password: str, id_organisation: str) -> None:
+    """Download the data of all volunteer actions from Bénévalibre.
 
+    The data of volunteer actions are exported from Bénévalibre
+    (https://app.benevalibre.org/) to a JSON file, then it is converted to an
+    Excel file.
+
+    :param folder_path: Output folder path.
+    :type folder_path: str
+    :param mail: Email to login to Bénévalibre.
+    :type mail: str
+    :param password: Password to login to Bénévalibre.
+    :type password: str
+    :param id_organisation: Bénévalibre ID of the organisation.
+    :type id_organisation: str
+
+    """
+
+    # Create the output folder.
     today = date.isoformat(date.today())
     if not os.path.exists(f"{folder_path}/{today}"):
         os.makedirs(f"{folder_path}/{today}")
 
+    file = f"{folder_path}/{today}/benevalibre_{today}"
+
+    print(f'The Excel file will be downloaded in the folder "{folder_path}/{today}/".')
+    print("Loading, please wait...")
+
+    # Go to the Bénévalibre web app then download the data.
     async with async_playwright() as p:
         print("Launching browser...")
 
@@ -36,42 +58,46 @@ async def download_data(folder_path, mail, password, id_association):
 
         async with page.expect_download() as download_info:
             try:
-                await page.goto(f"https://app.benevalibre.org/associations/{id_association}/benevalo/?_export=json")
+                await page.goto(f"https://app.benevalibre.org/associations/{id_organisation}/benevalo/?_export=json")
             except:
                 pass
         
         download = await download_info.value
-        await download.save_as(f"{folder_path}/{today}/benevalibre_{today}.json")
+        await download.save_as(f"{file}.json")
 
         await browser.close()
+    
+    # Import the JSON file then convert it to an Excel file.
+    data = pd.read_json(f"{file}.json")
+    data.to_excel(f"{file}.xlsx", index=False)
+    os.remove(f"{file}.json")
+
+def get_inputs() -> list:
+    """Get credentials from the ``.env`` file and the output folder path from user input.
 
 
-async def export_data():
-    """Exporte et converti en Excel les données des bénévolats de Bénévalibre."""
+    :returns: The output folder path, the email, the password ans the organisation ID.
+
+    :rtype: list
+
+    """
 
     load_dotenv(find_dotenv(raise_error_if_not_found=True))
+
     MAIL = os.environ.get("MAIL")
     PASSWORD = os.environ.get("PASSWORD")
-    ID_ASSOCIATION = os.environ.get("ID_ASSOCIATION")
+    ID_ORGANISATION = os.environ.get("ID_ORGANISATION")
 
     tkinter.Tk().withdraw()
     folder_path = filedialog.askdirectory()
 
-    today = date.isoformat(date.today())
-    file = f"{folder_path}/{today}/benevalibre_{today}.json"
-
     os.system("cls")
 
-    print(f'The Excel file will be downloaded in the folder "{folder_path}/{today}/".')
-    print("Loading, please wait...")
-
-    await download_data(folder_path, MAIL, PASSWORD, ID_ASSOCIATION)
-    df = pd.read_json(file)
-
-    df.to_excel(f"{folder_path}/{today}/benevalibre_{today}.xlsx", index=False)
-
-    os.remove(f"{folder_path}/{today}/benevalibre_{today}.json")
+    return [folder_path, MAIL, PASSWORD, ID_ORGANISATION]
 
 if __name__ == '__main__':
     print("Loading, please wait...")
-    asyncio.run(export_data())
+
+    inputs = get_inputs()
+
+    asyncio.run(export_data(*inputs))

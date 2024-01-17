@@ -6,11 +6,11 @@
 - pipenv version: ≥ 2023-11-15
 - At least Windows 10 with Powershell
 - An account on the [Bénévalibre](https://app.benevalibre.org) web app.
-- An `.env` file in the root project directory with the environment variables `ID_ASSOCIATION`, `MAIL` and `PASSWORD`.
+- An `.env` file in the root project directory with the environment variables `ID_ORGANISATION`, `MAIL` and `PASSWORD`.
 
 > [!NOTE]
-> - To get the ID of the association:
->   1) In [board](https://app.benevalibre.org/board/), click on the association you want.
+> - To get the organisation ID:
+>   1) In [board](https://app.benevalibre.org/board/), click on the organisation you want.
 >   2) Copy the ID in the URL of the page after `/association/`.
 >
 >   Ex: in `https://app.benevalibre.org/association/1234/`, the ID is "1234".
@@ -18,7 +18,7 @@
 >   ```
 >   MAIL="elliot.alderson@association.org"
 >   PASSWORD="strong password"
->   ID_ASSOCIATION="1234"
+>   ID_ORGANISATION="1234"
 >   ```
 
 ### Setup for development or to build from source
