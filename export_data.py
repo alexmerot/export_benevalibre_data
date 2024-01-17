@@ -76,7 +76,6 @@ async def export_data(folder_path: str, mail: str, password: str, id_organisatio
 def get_inputs() -> list:
     """Get credentials from the ``.env`` file and the output folder path from user input.
 
-
     :returns: The output folder path, the email, the password ans the organisation ID.
 
     :rtype: list
@@ -104,5 +103,4 @@ if __name__ == '__main__':
     print("Please select the folder where to export the Excel file.")
 
     inputs = get_inputs()
-
     asyncio.run(export_data(*inputs))
