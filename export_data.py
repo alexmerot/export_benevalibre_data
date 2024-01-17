@@ -9,6 +9,7 @@ from datetime import date
 
 import os
 from dotenv import load_dotenv, find_dotenv
+import sys
 
 async def export_data(folder_path: str, mail: str, password: str, id_organisation: str) -> None:
     """Download the data of all volunteer actions from Bénévalibre.
@@ -89,14 +90,18 @@ def get_inputs() -> list:
     ID_ORGANISATION = os.environ.get("ID_ORGANISATION")
 
     tkinter.Tk().withdraw()
-    folder_path = filedialog.askdirectory()
+    folder_path = filedialog.askdirectory(title="Select output folder")
 
     os.system("cls")
 
-    return [folder_path, MAIL, PASSWORD, ID_ORGANISATION]
+    if folder_path:
+        return [folder_path, MAIL, PASSWORD, ID_ORGANISATION]
+    else:
+        sys.exit("No folder selected.")
 
 if __name__ == '__main__':
     print("Loading, please wait...")
+    print("Please select the folder where to export the Excel file.")
 
     inputs = get_inputs()
 
