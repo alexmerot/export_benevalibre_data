@@ -1,6 +1,6 @@
-## Export data from the *Bénévalibre* web app to an Excel file
+# Export data from the *Bénévalibre* web app to an Excel file
 
-### Requirements
+## Requirements
 
 - Python version: ≥ 3.12
 - pipenv version: ≥ 2023-11-15
@@ -21,7 +21,7 @@
 >   ID_ORGANISATION="1234"
 >   ```
 
-### Setup for development or to build from source
+## Setup for development or to build from source
 
 1) Clone or download the Github repo <https://github.com/alexmerot/extraction_benevalibre>.
 2) Install the packages with `pipenv`:
@@ -46,7 +46,7 @@
 > download browsers under the `site-packages/playwright` folder. It is necessary
 > for the executable file created by Pyinstaller to work.
 
-### Usage
+## Usage
 
 1) Double-click the `export_data.exe` file in `.\dist\export_data\`.
 2) Wait for file explorer to launch, then select the folder where to download the Excel file.
