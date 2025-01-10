@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from playwright.async_api import async_playwright
 import asyncio
@@ -89,7 +90,7 @@ def get_inputs() -> list:
     PASSWORD = os.environ.get("PASSWORD")
     ID_ORGANISATION = os.environ.get("ID_ORGANISATION")
 
-    tkinter.Tk().withdraw()
+    root = tkinter.Tk()
     folder_path = filedialog.askdirectory(title="Select output folder")
 
     if folder_path:
@@ -103,3 +104,5 @@ if __name__ == '__main__':
 
     inputs = get_inputs()
     asyncio.run(export_data(*inputs))
+
+    input("Press enter to exit;")
