@@ -52,14 +52,14 @@ async def export_data(folder_path: str, mail: str, password: str, id_organisatio
         await page.wait_for_timeout(100)
 
         await page.get_by_label("Adresse mail").fill(mail)
-        await page.get_by_label("Mot de passe").fill(password)
+        await page.get_by_role("textbox", name='Mot de passe*').fill(password)
         await page.get_by_role("button", name="Se connecter").click()
 
         print("Successful login. Download is starting...")
 
         async with page.expect_download() as download_info:
             try:
-                await page.goto(f"https://app.benevalibre.org/associations/{id_organisation}/benevalo/?_export=json")
+                await page.goto(f"https://app.benevalibre.org/associations/{id_organisation}/benevalos/?export=json")
             except:
                 pass
         
