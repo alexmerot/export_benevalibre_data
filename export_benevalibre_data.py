@@ -1,12 +1,13 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from playwright.async_api import async_playwright
 import asyncio
-
 import tkinter
 from tkinter import filedialog
-
 import pandas as pd
+from skimpy import clean_columns
 from datetime import date
-
 import os
 from dotenv import load_dotenv, find_dotenv
 import sys
@@ -69,7 +70,8 @@ async def export_data(folder_path: str, mail: str, password: str, id_organisatio
         await browser.close()
     
     # Import the JSON file then convert it to an Excel file.
-    data = pd.read_json(f"{file}.json")
+    data = clean_columns(pd.read_json(f"{file}.json").convert_dtypes())
+    data["date_de_fin"] = pd.to_datetime(data["date_de_fin"], format="%Y-%m-%d")
     data.to_excel(f"{file}.xlsx", index=False)
     os.remove(f"{file}.json")
 
@@ -88,10 +90,8 @@ def get_inputs() -> list:
     PASSWORD = os.environ.get("PASSWORD")
     ID_ORGANISATION = os.environ.get("ID_ORGANISATION")
 
-    tkinter.Tk().withdraw()
+    root = tkinter.Tk()
     folder_path = filedialog.askdirectory(title="Select output folder")
-
-    os.system("cls")
 
     if folder_path:
         return [folder_path, MAIL, PASSWORD, ID_ORGANISATION]
@@ -104,3 +104,5 @@ if __name__ == '__main__':
 
     inputs = get_inputs()
     asyncio.run(export_data(*inputs))
+
+    input("Press enter to exit;")

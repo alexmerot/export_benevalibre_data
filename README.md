@@ -38,7 +38,7 @@
     ```
 5) Run the Pyinstaller command:
     ```
-    pyinstaller export_data.py
+    pyinstaller export_benevalibre_data.py
     ```
 
 > [!NOTE]
@@ -48,7 +48,7 @@
 
 ## Usage
 
-1) Double-click the `export_data.exe` file in `.\dist\export_data\`.
+1) Double-click the `export_benevalibre_data.exe` file in `.\dist\export_benevalibre_data\`.
 2) Wait for file explorer to launch, then select the folder where to download the Excel file.
 3) Wait, the Excel file will be downloaded.
 
