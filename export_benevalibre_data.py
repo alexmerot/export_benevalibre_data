@@ -6,7 +6,6 @@ import asyncio
 import tkinter
 from tkinter import filedialog
 import pandas as pd
-from skimpy import clean_columns
 from datetime import date
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -70,8 +69,7 @@ async def export_data(folder_path: str, mail: str, password: str, id_organisatio
         await browser.close()
     
     # Import the JSON file then convert it to an Excel file.
-    data = clean_columns(pd.read_json(f"{file}.json").convert_dtypes())
-    data["date_de_fin"] = pd.to_datetime(data["date_de_fin"], format="%Y-%m-%d")
+    data = pd.read_json(f"{file}.json")
     data.to_excel(f"{file}.xlsx", index=False)
     os.remove(f"{file}.json")
 
